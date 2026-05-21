@@ -1,6 +1,6 @@
 # Worked examples — image prompt builder
 
-Three generic worked examples showing the intended flow: brief capture -> red-line check -> template selection -> prompt delivery. The first two are positive examples; the third is a negative example showing how the skill should refuse and redirect.
+Four generic worked examples showing the intended flow: brief capture -> red-line check -> template selection -> prompt delivery. The first two are positive examples, the third is a negative example showing how the skill should refuse and redirect, and the fourth shows the multi-series Markdown file shape.
 
 ## Contents
 
@@ -231,6 +231,8 @@ ASPECT RATIO: 16:9 landscape.
 ### Delivery
 
 ````
+### English response
+
 This figure should not be built with image generation.
 
 A study-area map with real watershed boundaries, infrastructure points, field sites, and waterbody extent is a real geographic map. Image models can produce plausible-looking geography while inventing or shifting real features. For a formal report, that error is not defensible.
@@ -255,6 +257,33 @@ Use a GIS workflow instead:
    - PNG for slides
 
 If useful, I can produce a QGIS layout brief or a Mermaid/draw.io planning sketch, but not an image-generation prompt for this map.
+
+### Chinese parallel version
+
+这类图件不应使用图像生成模型制作。
+
+包含真实流域边界、基础设施点位、野外样点和水体范围的研究区图属于真实地理地图。图像模型可能生成看起来合理、但实际会编造或偏移真实边界、河道和点位的地图。对于正式报告，这类错误无法经受审查。
+
+应改用 GIS 工作流：
+
+1. 在 QGIS 或 ArcGIS 中使用真实空间图层制图：
+   - 流域边界
+   - 河网
+   - 基础设施或干预点位
+   - 野外样点或监测点位
+   - 水库、湖泊或其他水体面图层
+
+2. 使用出版级符号系统：
+   - 已移除或停用的基础设施：带叉方形
+   - 监测站点：三角形或圆形
+   - 水库/湖泊：填充面
+   - 添加比例尺、指北针、坐标网格和投影说明
+
+3. 导出：
+   - 用于出版的 SVG/PDF
+   - 用于幻灯片的 PNG
+
+如有需要，可以生成 QGIS 版式 brief 或 Mermaid/draw.io 规划草图，但不应为这张真实地图生成图像模型 prompt。
 ````
 
 ---
@@ -289,10 +318,16 @@ If useful, I can produce a QGIS layout brief or a Mermaid/draw.io planning sketc
 ## 0. Usage notes
 Copy only the English prompt block into the image tool. Use the Chinese version for content audit. Add final labels and exact technical text manually where needed.
 
+只复制 English prompt 代码块到图像工具中。Chinese parallel version 用于中文审阅。最终标签和精确技术文字应在后期手动添加。
+
 ## 1. Shared assumptions and visual identity
 - Style: editorial scientific, clean composition, restrained color.
 - Palette: deep teal, warm cream, charcoal, one soft accent per series.
 - Red-line status: no real data charts, real maps, or true network topology included.
+
+- 风格: 编辑型科学视觉、构图干净、色彩克制。
+- 色板: 深青色、暖米色、炭灰色,每个系列使用一种柔和强调色。
+- 红线状态: 不包含真实数据图、真实地图或真实网络拓扑。
 
 ## Series A: Cover Concepts
 > Series goal: generate polished hero visuals for the opening slide.
@@ -304,12 +339,12 @@ Copy only the English prompt block into the image tool. Use the Chinese version 
 
 #### English prompt
 ```
-[standalone cover prompt]
+Create a polished editorial hero image for an environmental science presentation. Show an abstract river system as layered flowing ribbons crossing a warm cream background, with subtle silhouettes of wetlands, riparian vegetation, monitoring markers, and restoration zones integrated into the ribbons. Use a restrained scientific palette: deep teal water, charcoal linework, warm cream background, and one soft green accent. No text, no logos, no real map shapes, no coordinates, no data charts. The image should feel precise, calm, and suitable for the opening slide of a research presentation.
 ```
 
 #### Chinese parallel version
 ```
-[complete Chinese audit version]
+为一份环境科学演示文稿生成一张精致的编辑型首页主视觉。画面中用层叠流动的带状形态表现抽象河流系统,背景为暖米色,带状形态中融合湿地、河岸植被、监测标记和修复区域的微弱剪影。使用克制的科学色板:深青色水体、炭灰色线条、暖米色背景,并加入一种柔和绿色强调色。不要文字、不要 logo、不要真实地图形状、不要坐标、不要数据图。整体应显得准确、平静,适合作为研究演示的开场页。
 ```
 
 #### Post-processing notes
@@ -321,16 +356,50 @@ Copy only the English prompt block into the image tool. Use the Chinese version 
 > Variation axis: viewpoint and level of detail.
 
 ### Prompt B1: Conceptual Habitat Cross-Section
-...
+**Tool**: ChatGPT/OpenAI GPT Image
+**Recommended parameters**: 16:9, highest practical quality/resolution
+
+#### English prompt
+```
+Create a conceptual scientific explainer figure showing a simplified aquatic habitat cross-section. Divide the scene into three connected zones: upstream shaded channel, mid-channel restoration reach, and downstream open-water refuge. Use numbered marker circles only, not text labels. Show generic substrate, vegetation, flow arrows, and habitat patches as conceptual elements, not a real site. Keep the style flat, clean, and publication-oriented, with teal water, muted greens, warm sediment colors, and charcoal outlines. No real map, no measured values, no axis, no scale bar.
+```
+
+#### Chinese parallel version
+```
+生成一张概念型科学解释图,展示简化的水生生境剖面。画面分成三个相互连接的区域:上游遮阴河段、中游修复河段、下游开阔水域庇护区。只使用编号标记圆圈,不要文字标签。底质、植被、流向箭头和生境斑块均作为概念元素呈现,不要指向真实地点。风格应平面、干净、适合出版,使用青蓝色水体、柔和绿色、暖色沉积物和炭灰色描边。不要真实地图、不要测量数值、不要坐标轴、不要比例尺。
+```
+
+#### Post-processing notes
+- Replace marker numbers with final labels manually.
+- Verify the visual does not imply a real study site.
+- Check that flow direction and habitat zones remain easy to read.
 
 ## Series C: Social Media Adaptations
 > Series goal: adapt the visual language into lower-density outreach images.
 > Variation axis: aspect ratio and audience tone.
 
 ### Prompt C1: Square Outreach Visual
-...
+**Tool**: ChatGPT/OpenAI GPT Image
+**Recommended parameters**: 1:1, highest practical quality/resolution
+
+#### English prompt
+```
+Create a square outreach visual translating the environmental science presentation into a simple public-facing image. Show a clean central illustration of a healthy river corridor with water, vegetation, small generic aquatic organisms, and people represented only as tiny distant silhouettes on a trail. Use a friendly but still scientific editorial style. Keep the composition low-density, with no text, no numerical claims, no map outlines, and no real place identifiers. Palette: teal water, soft green vegetation, warm cream background, charcoal accents.
+```
+
+#### Chinese parallel version
+```
+生成一张方形科普传播视觉图,把环境科学演示主题转化为面向公众的简洁图像。画面中央展示健康河流廊道,包含水体、植被、小型通用水生生物,人物只以远处步道上的小剪影表示。风格友好,但仍保持科学编辑视觉。构图低密度,不要文字、不要数值主张、不要地图轮廓、不要真实地点标识。色板:青蓝色水体、柔和绿色植被、暖米色背景、炭灰色强调。
+```
+
+#### Post-processing notes
+- Verify that no accidental text appears.
+- Keep organisms generic unless a verified reference is provided.
+- Use a separate layout tool for final captions or social-media text.
 
 ## Appendix: Red-line and QA checklist
 - No prompt should be used for real-data charts, real maps, or true network topology.
 - Verify text, morphology, proportions, and color semantics before publication.
+- 任何 prompt 都不应用于生成真实数据图、真实地图或真实网络拓扑。
+- 发布前检查文字、形态、比例和颜色语义。
 ````
